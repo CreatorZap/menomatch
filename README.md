@@ -1,10 +1,26 @@
-# 🧡 MenoMatch - Personalized Menopause Wellness Platform
+# 🌸 MenoMatch
 
-![MenoMatch](https://img.shields.io/badge/Status-MVP-blue)
-![React](https://img.shields.io/badge/React-18.2.0-blue)
-![Tailwind](https://img.shields.io/badge/Tailwind-3.3.2-blue)
+> Personalized menopause wellness recommendations for every woman's unique journey.
 
-**MenoMatch** is a personalized menopause wellness platform that helps women find the perfect natural supplements based on their unique symptoms through an intelligent quiz system.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/menomatch)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-18.2-61dafb.svg)](https://reactjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.3-38bdf8.svg)](https://tailwindcss.com/)
+
+---
+
+## 🎯 About MenoMatch
+
+MenoMatch is a comprehensive web application designed to help women navigate menopause with personalized supplement recommendations, educational content, and evidence-based wellness strategies.
+
+### ✨ Key Features
+
+- 🎯 **Personalized Quiz** - 10-question assessment for tailored recommendations
+- 💊 **Product Recommendations** - Curated supplements based on symptoms
+- 📚 **Educational Blog** - 8 comprehensive articles on menopause wellness
+- 📱 **Responsive Design** - Beautiful experience on all devices
+- 🔍 **SEO Optimized** - Meta tags, Open Graph, and Schema.org markup
+- 📊 **Analytics Ready** - Google Analytics 4 integration
 
 ---
 
@@ -12,525 +28,313 @@
 
 ### Prerequisites
 
-- **Node.js** v18+ ([Download here](https://nodejs.org/))
-- **npm** or **yarn**
-- **Git**
+- Node.js 18.x or higher
+- npm or yarn
 
 ### Installation
 
 ```bash
-# 1. Clone the repository
+# Clone the repository
 git clone https://github.com/yourusername/menomatch.git
+
+# Navigate to project directory
 cd menomatch
 
-# 2. Install dependencies
+# Install dependencies
 npm install
 
-# 3. Create .env file
-cp env.example .env
-# Edit .env with your actual API keys
-
-# 4. Start development server
+# Start development server
 npm start
 ```
 
-The app will open at `http://localhost:3000`
+The app will open at [http://localhost:3000](http://localhost:3000)
 
 ---
 
 ## 📁 Project Structure
 
 ```
-menomatch/
-├── public/
-│   ├── index.html              # HTML template with SEO meta tags
-│   ├── favicon.ico
-│   └── manifest.json
+MenoMatch/
+├── public/                 # Static files
+│   ├── index.html         # HTML template with GA4
+│   ├── logo192.png        # App logo
+│   ├── logo512.png        # PWA icon
+│   ├── manifest.json      # PWA manifest
+│   └── og-image.jpg       # Social media preview
+│
 ├── src/
-│   ├── components/
-│   │   ├── Header.jsx          # Navigation header
-│   │   ├── Landing.jsx         # Landing page component
-│   │   ├── Quiz.jsx            # Interactive quiz component
-│   │   ├── Results.jsx         # Results page with recommendations
-│   │   └── EmailModal.jsx      # Email capture modal
-│   ├── data/
-│   │   ├── questions.js        # Quiz questions data
-│   │   └── products.js         # Product database with affiliate links
-│   ├── utils/
-│   │   ├── recommendations.js  # Recommendation algorithm
-│   │   └── emailService.js     # Email service integrations
-│   ├── App.jsx                 # Main app component
-│   ├── index.js                # React entry point
-│   └── index.css               # Global styles with Tailwind
-├── env.example                 # Environment variables template
-├── .gitignore
-├── package.json
-├── tailwind.config.js          # Tailwind configuration
-└── README.md                   # This file
+│   ├── components/        # Reusable React components
+│   │   ├── Header.jsx     # Navigation with mobile menu
+│   │   ├── Landing.jsx    # Hero section
+│   │   ├── Quiz.jsx       # Interactive quiz
+│   │   ├── Results.jsx    # Personalized results
+│   │   ├── EmailModal.jsx # Email capture
+│   │   └── BlogPost.jsx   # Blog post template
+│   │
+│   ├── pages/            # Page components
+│   │   ├── About.jsx     # About page
+│   │   ├── BlogIndex.jsx # Blog listing
+│   │   ├── ArticlePage.jsx # Dynamic article router
+│   │   └── articles/     # 8 full blog articles
+│   │       ├── NavigatingMenopause.jsx
+│   │       ├── NaturalSupplements.jsx
+│   │       ├── MoodSwingsAnxiety.jsx
+│   │       ├── OvercomingInsomnia.jsx
+│   │       ├── MenopauseDiet.jsx
+│   │       ├── CollagenBenefits.jsx
+│   │       ├── UnderstandingPerimenopause.jsx
+│   │       └── MenoMatchHowItWorks.jsx
+│   │
+│   ├── data/             # Application data
+│   │   ├── questions.js  # Quiz questions
+│   │   ├── products.js   # Product database
+│   │   └── articles.js   # Blog article metadata
+│   │
+│   ├── App.jsx           # Main app with routing
+│   ├── index.js          # React entry point
+│   └── index.css         # Tailwind CSS imports
+│
+├── package.json          # Dependencies and scripts
+├── tailwind.config.js    # Tailwind configuration
+├── vercel.json           # Vercel deployment config
+└── DEPLOYMENT.md         # Deployment guide
 ```
 
 ---
 
-## 🎨 Features
+## 🛠️ Built With
 
-### ✅ Implemented (MVP)
+### Core Technologies
 
-- **Landing Page** - Professional, conversion-optimized design
-- **Interactive Quiz** - 10 questions with progress tracking
-- **Smart Recommendations** - Personalized product suggestions based on symptoms
-- **Email Capture** - Beautiful modal for lead generation
-- **Affiliate Integration** - 12 real affiliate links (ClickBank, Amazon, Digistore24)
-- **Responsive Design** - Mobile-first, works on all devices
-- **Analytics Ready** - Google Analytics 4 integration
-- **AdSense Ready** - Google AdSense integration placeholders
-- **Multiple Email Services** - Mailchimp, ConvertKit, Custom API support
+- **[React](https://reactjs.org/)** - UI library
+- **[React Router](https://reactrouter.com/)** - Client-side routing
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS
+- **[Lucide React](https://lucide.dev/)** - Beautiful icons
+- **[React Helmet Async](https://github.com/staylor/react-helmet-async)** - SEO meta tags
 
-### 🔜 Coming Soon
+### Development Tools
 
-- User accounts with saved results
-- Email automation sequences
-- Blog section with SEO articles
-- A/B testing capabilities
-- Advanced analytics dashboard
-- PDF report generation
-- Multi-language support
+- **Create React App** - Zero-config setup
+- **PostCSS** - CSS processing
+- **Autoprefixer** - Vendor prefixes
 
 ---
 
-## 🔧 Configuration
-
-### 1. Environment Variables
-
-Create a `.env` file from the template:
+## 📝 Available Scripts
 
 ```bash
-cp env.example .env
-```
+# Start development server
+npm start
 
-**Required Variables:**
+# Build for production
+npm run build
 
-```env
-# Google Analytics 4
-REACT_APP_GA_TRACKING_ID=G-XXXXXXXXXX
+# Run tests
+npm test
 
-# Email Service (Choose one)
-# Option 1: Mailchimp
-REACT_APP_MAILCHIMP_API_KEY=your_api_key
-REACT_APP_MAILCHIMP_LIST_ID=your_list_id
-REACT_APP_MAILCHIMP_SERVER_PREFIX=us1
-
-# Option 2: ConvertKit (Recommended)
-REACT_APP_CONVERTKIT_API_KEY=your_api_key
-REACT_APP_CONVERTKIT_FORM_ID=your_form_id
-
-# Google AdSense (Optional)
-REACT_APP_ADSENSE_CLIENT_ID=ca-pub-XXXXXXXXXXXXXXXX
-```
-
-### 2. Google Analytics Setup
-
-1. Create a Google Analytics 4 property at [analytics.google.com](https://analytics.google.com)
-2. Get your Measurement ID (format: `G-XXXXXXXXXX`)
-3. Add it to your `.env` file
-4. Uncomment the GA4 script in `public/index.html`
-5. Replace `G-XXXXXXXXXX` with your actual ID
-
-```html
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-</script>
-```
-
-### 3. Email Service Integration
-
-#### Option A: ConvertKit (Recommended for beginners)
-
-1. Get API key from [ConvertKit Settings](https://app.convertkit.com/account/edit)
-2. Create a form and get Form ID
-3. Add credentials to `.env`
-4. Update `App.jsx`:
-
-```javascript
-import { submitToConvertKit } from './utils/emailService';
-
-const handleEmailSubmit = async (email) => {
-  try {
-    await submitToConvertKit(email, answers);
-    alert(`Thank you! Results sent to ${email}`);
-    setShowEmailModal(false);
-  } catch (error) {
-    console.error('Error:', error);
-  }
-};
-```
-
-#### Option B: Mailchimp
-
-1. Get API key from Mailchimp account
-2. Get List ID from your audience
-3. Add credentials to `.env`
-4. Use `submitToMailchimp` in `App.jsx`
-
-#### Option C: Custom API
-
-Implement your own backend:
-
-```javascript
-import { submitToCustomAPI } from './utils/emailService';
-
-const handleEmailSubmit = async (email) => {
-  return await submitToCustomAPI(email, answers);
-};
-```
-
-### 4. Google AdSense Setup
-
-1. Apply for Google AdSense at [adsense.google.com](https://adsense.google.com)
-2. Wait for approval (24-48 hours)
-3. Get your AdSense Client ID
-4. Uncomment the AdSense script in `public/index.html`
-5. Add ad units to your components
-
----
-
-## 🎯 Recommendation Algorithm
-
-The recommendation engine in `src/utils/recommendations.js` uses a scoring system:
-
-1. **Calculates symptom severity** (0-5 scale) based on quiz answers
-2. **Matches products** to user symptoms
-3. **Ranks products** by relevance score
-4. **Applies bonus scoring** for comprehensive products
-5. **Returns top 4** most relevant recommendations
-
-### Example Flow:
-
-```
-User Answer: "Daily hot flashes" → Hot Flash Score: 5
-Product: Black Cohosh → Targets: [hotFlashes, sleep]
-Relevance Score: 5 (hot flashes) + 0 (no sleep issue) = 5
-```
-
-Products with highest relevance scores are recommended first.
-
-**Fallback System:** If fewer than 4 products match, top-rated products are added as fallbacks.
-
----
-
-## 📊 Analytics Events
-
-The app tracks these events automatically:
-
-| Event | Description | Tracked Data |
-|-------|-------------|--------------|
-| `page_view` | Page/step changes | page_title, page_location |
-| `quiz_started` | User starts quiz | quiz_version |
-| `quiz_completed` | User finishes quiz | total_questions |
-| `email_captured` | Email submitted | source |
-| `affiliate_click` | Product link clicked | product_id, product_name, platform |
-
-### Custom Event Tracking:
-
-```javascript
-// Add this anywhere in your components:
-if (window.gtag) {
-  window.gtag('event', 'custom_event_name', {
-    category: 'engagement',
-    label: 'button_click'
-  });
-}
+# Eject from Create React App (irreversible)
+npm run eject
 ```
 
 ---
 
-## 🚢 Deployment
+## 🚀 Deployment
 
 ### Deploy to Vercel (Recommended)
 
 ```bash
-# 1. Install Vercel CLI
+# Install Vercel CLI
 npm install -g vercel
 
-# 2. Login to Vercel
-vercel login
-
-# 3. Deploy
-vercel
-
-# 4. Add environment variables in Vercel dashboard
-# Project Settings → Environment Variables
-
-# 5. Add custom domain (optional)
-vercel domains add getmenomatch.com
+# Deploy to production
+vercel --prod
 ```
 
-### Deploy to Netlify
+**Or use the Vercel Dashboard:**
+1. Import your Git repository
+2. Vercel auto-detects Create React App
+3. Click **Deploy**!
 
-```bash
-# 1. Build the project
-npm run build
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions.
 
-# 2. Install Netlify CLI
-npm install -g netlify-cli
+---
 
-# 3. Login
-netlify login
+## 🌐 Environment Variables
 
-# 4. Deploy
-netlify deploy --prod --dir=build
+Create a `.env.local` file for local development:
 
-# 5. Add environment variables in Netlify dashboard
-# Site Settings → Build & Deploy → Environment
+```env
+# Google Analytics
+REACT_APP_GA_MEASUREMENT_ID=G-0MWJ1MZHS0
+
+# Site URL (for SEO)
+REACT_APP_SITE_URL=https://menomatch.com
+
+# ConvertKit (optional)
+REACT_APP_CONVERTKIT_API_KEY=your_api_key
+REACT_APP_CONVERTKIT_FORM_ID=your_form_id
 ```
 
-### Environment Variables in Production
-
-**Important:** Add all environment variables from your `.env` file to your hosting platform dashboard.
+**Note:** All environment variables must start with `REACT_APP_` to be accessible in React.
 
 ---
 
-## 🔐 Security & Privacy
+## 📚 Content
 
-- **No sensitive data stored** - Quiz answers stored in session only
-- **HTTPS enforced** - SSL automatic with Vercel/Netlify
-- **GDPR compliant** - Add cookie consent banner if targeting EU
-- **Affiliate disclosure** - Included in footer
-- **Email validation** - Regex validation before submission
-- **Error handling** - Try/catch blocks on all async operations
+### Quiz
 
-### Privacy Policy (Required)
+- **10 Questions** covering:
+  - Age range
+  - Hot flashes frequency
+  - Sleep quality
+  - Mood changes
+  - Energy levels
+  - Physical changes
+  - Weight management
+  - Joint pain
+  - Brain fog
+  - Wellness preferences
 
-Create a privacy policy page that covers:
-- Data collection (email addresses, quiz answers)
-- Cookie usage
-- Analytics tracking (Google Analytics)
-- Affiliate relationships
-- User rights (unsubscribe, data deletion)
+### Blog Articles
 
-Use a generator like [TermsFeed](https://www.termsfeed.com/privacy-policy-generator/)
+1. **Navigating Menopause** - Essential guide to symptoms and solutions
+2. **Natural Supplements** - Top 5 evidence-based supplements
+3. **Mood & Anxiety** - Managing emotional aspects
+4. **Sleep Solutions** - Overcoming menopausal insomnia
+5. **Menopause Diet** - Nutrition for hormone balance
+6. **Collagen Benefits** - Skin, hair, and joint health
+7. **Understanding Perimenopause** - Early signs and preparation
+8. **How MenoMatch Works** - Personalized approach explanation
 
----
+### Product Categories
 
-## 📈 SEO Optimization
-
-### Current SEO Features:
-
-✅ Meta tags for all pages  
-✅ Open Graph tags (Facebook)  
-✅ Twitter Card tags  
-✅ Semantic HTML  
-✅ Mobile-responsive  
-✅ Fast load times  
-✅ Optimized images (lazy loading)
-
-### Next Steps:
-
-1. **Create sitemap.xml**
-```bash
-npm install --save-dev sitemap
-```
-
-2. **Submit to Google Search Console**
-   - Go to [search.google.com/search-console](https://search.google.com/search-console)
-   - Add your property
-   - Submit sitemap
-
-3. **Add schema markup** (JSON-LD for Quiz, FAQ)
-
-4. **Create robots.txt** in `/public`:
-```
-User-agent: *
-Allow: /
-Sitemap: https://getmenomatch.com/sitemap.xml
-```
-
-5. **Optimize Core Web Vitals**
-   - Largest Contentful Paint (LCP) < 2.5s
-   - First Input Delay (FID) < 100ms
-   - Cumulative Layout Shift (CLS) < 0.1
+- Comprehensive menopause support
+- Energy and vitality boosters
+- Natural herbal remedies
+- Hormonal balance support
+- Sleep aids
 
 ---
 
-## 🎨 Customization
+## 🎨 Design System
 
-### Update Colors
+### Colors
 
-Edit `tailwind.config.js`:
+- **Primary:** Blue (`#3B82F6`)
+- **Secondary:** Coral/Orange (`#F97316`)
+- **Accents:** Purple, Pink, Green
 
-```javascript
-theme: {
-  extend: {
-    colors: {
-      primary: {
-        500: '#3b82f6', // Your primary color
-      },
-      secondary: {
-        500: '#f97316', // Your secondary color
-      }
-    }
-  }
-}
-```
+### Typography
 
-### Add More Products
+- **Font Family:** Inter (from Google Fonts)
+- **Headings:** Bold, large sizes
+- **Body:** Regular, optimized for readability
 
-Edit `src/data/products.js`:
+### Components
 
-```javascript
-{
-  id: 'new-product',
-  name: 'Product Name',
-  description: 'Full description',
-  benefits: ['Benefit 1', 'Benefit 2'],
-  link: 'https://your-affiliate-link.com',
-  platform: 'Platform Name',
-  targetSymptoms: ['symptom1', 'symptom2'],
-  category: 'category',
-  price: '$$',
-  rating: 4.5
-}
-```
-
-### Modify Quiz Questions
-
-Edit `src/data/questions.js` to change or add questions with scores.
+- Responsive navigation with mobile hamburger menu
+- Animated progress bars
+- Card-based layouts
+- Gradient CTAs
+- Modal overlays
 
 ---
 
-## 🐛 Troubleshooting
+## 📊 SEO & Analytics
 
-### Issue: Tailwind styles not working
+### Built-in SEO Features
 
-**Solution:**
-```bash
-# Reinstall Tailwind
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
+- ✅ Dynamic meta tags per page
+- ✅ Open Graph tags for social sharing
+- ✅ Twitter Card metadata
+- ✅ Schema.org structured data
+- ✅ Semantic HTML
+- ✅ Mobile-optimized
+- ✅ Fast load times
 
-# Make sure tailwind.config.js has correct content paths
-content: ["./src/**/*.{js,jsx,ts,tsx}"]
-```
+### Analytics
 
-### Issue: Analytics not tracking
-
-**Solution:**
-- Check browser console for errors
-- Verify GA4 ID is correct in `.env` and `index.html`
-- Disable ad blockers for testing
-- Check if script is loaded in Network tab
-- Wait 24-48 hours for data to appear in GA dashboard
-
-### Issue: Email submission fails
-
-**Solution:**
-- Verify API keys in `.env` are correct
-- Check console for error messages
-- Test with Postman first
-- Ensure CORS is configured on backend (if using custom API)
-
-### Issue: Build fails
-
-**Solution:**
-```bash
-# Clear cache and reinstall
-rm -rf node_modules package-lock.json
-npm install
-npm run build
-```
-
-### Issue: Affiliate links not tracking
-
-**Solution:**
-- Test links in incognito mode
-- Verify `handleAffiliateClick` function is called
-- Check affiliate platform dashboard (can take 24-48h)
-- Ensure tracking parameters are in URLs
+- Google Analytics 4 tracking
+- Event tracking for:
+  - Quiz starts/completions
+  - Email captures
+  - Affiliate clicks
+  - Page views
 
 ---
 
-## 📝 License
+## 🔒 Security
 
-This project is proprietary and confidential.
-
----
-
-## 🤝 Support
-
-For issues or questions:
-- Create an issue on GitHub
-- Email: support@getmenomatch.com
+- X-Frame-Options header (prevent clickjacking)
+- X-Content-Type-Options header (prevent MIME sniffing)
+- X-XSS-Protection header
+- HTTPS enforced on Vercel
+- No sensitive data in client-side code
 
 ---
 
-## 🎉 Next Steps After Setup
+## 📱 Browser Support
 
-### Development Checklist:
-- [ ] Complete `.env` configuration
-- [ ] Test quiz flow thoroughly
-- [ ] Test all affiliate links
-- [ ] Test on multiple devices (mobile, tablet, desktop)
-- [ ] Test email capture and submission
-
-### Pre-Launch Checklist:
-- [ ] Setup Google Analytics 4
-- [ ] Apply for Google AdSense (if desired)
-- [ ] Configure email service (Mailchimp/ConvertKit)
-- [ ] Create Privacy Policy page
-- [ ] Create Terms of Service page
-- [ ] Create Affiliate Disclosure page
-- [ ] Add cookie consent banner (if targeting EU)
-- [ ] Create custom favicon and logos
-- [ ] Create social media share images (og-image.jpg)
-
-### Launch Checklist:
-- [ ] Deploy to production (Vercel/Netlify)
-- [ ] Add custom domain
-- [ ] Configure SSL certificate (automatic)
-- [ ] Submit to Google Search Console
-- [ ] Create and submit sitemap.xml
-- [ ] Test all functionality in production
-- [ ] Setup monitoring (Sentry, LogRocket, etc.)
-- [ ] Create backup strategy
-
-### Post-Launch:
-- [ ] Monitor analytics daily
-- [ ] A/B test headlines and CTAs
-- [ ] Collect user feedback
-- [ ] Monitor affiliate commissions
-- [ ] Optimize conversion rate
-- [ ] Create content marketing plan
-- [ ] Build backlinks for SEO
-- [ ] Engage with users via email sequences
+- ✅ Chrome (latest)
+- ✅ Firefox (latest)
+- ✅ Safari (latest)
+- ✅ Edge (latest)
+- ✅ Mobile browsers (iOS Safari, Chrome Android)
 
 ---
 
-## 📚 Resources
+## 🤝 Contributing
 
-- [React Documentation](https://react.dev)
-- [Tailwind CSS Docs](https://tailwindcss.com/docs)
-- [Google Analytics 4](https://support.google.com/analytics)
-- [Vercel Documentation](https://vercel.com/docs)
-- [Netlify Documentation](https://docs.netlify.com)
-- [ConvertKit API Docs](https://developers.convertkit.com/)
-- [Mailchimp API Docs](https://mailchimp.com/developer/)
-- [Lucide React Icons](https://lucide.dev/)
+Contributions are welcome! Please feel free to submit a Pull Request.
 
----
-
-## 🏆 Performance
-
-Current Lighthouse Scores (estimated):
-- **Performance**: 90+
-- **Accessibility**: 95+
-- **Best Practices**: 95+
-- **SEO**: 100
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
-**Built with ❤️ for women's wellness**
+## 📄 License
 
-MenoMatch © 2025
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👥 Team
+
+Developed with 💜 by the MenoMatch Team
+
+---
+
+## 🙏 Acknowledgments
+
+- Design inspiration from modern wellness platforms
+- Content based on evidence-based menopause research
+- Icons from [Lucide Icons](https://lucide.dev/)
+- Images from [Unsplash](https://unsplash.com/)
+
+---
+
+## 📞 Support
+
+For support, email support@menomatch.com or open an issue on GitHub.
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] User accounts and saved results
+- [ ] Email integration with ConvertKit
+- [ ] Advanced filtering on blog
+- [ ] Symptom tracker
+- [ ] Community features
+- [ ] Mobile app (React Native)
+
+---
+
+**⭐ Star this repo if you find it helpful!**
+
+---
+
+*Last updated: October 2025*

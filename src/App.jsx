@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Header from './components/Header';
 import Landing from './components/Landing';
 import Quiz from './components/Quiz';
@@ -8,6 +8,10 @@ import EmailModal from './components/EmailModal';
 import About from './pages/About';
 import BlogIndex from './pages/BlogIndex';
 import ArticlePage from './pages/ArticlePage';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import AffiliateDisclosure from './pages/AffiliateDisclosure';
+import Disclaimer from './pages/Disclaimer';
 import { questions } from './data/questions';
 
 // Quiz App Component (encapsulates quiz logic)
@@ -186,24 +190,28 @@ function QuizApp() {
             <div>
               <h4 className="font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#quiz" className="hover:text-white transition-colors">Take Quiz</a></li>
-                <li><a href="#about" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#blog" className="hover:text-white transition-colors">Blog</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Resources</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
-                <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#privacy" className="hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><Link to="/" className="hover:text-white transition-colors">Take Quiz</Link></li>
+                <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
+                <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Legal</h4>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#terms" className="hover:text-white transition-colors">Terms of Service</a></li>
-                <li><a href="#disclaimer" className="hover:text-white transition-colors">Disclaimer</a></li>
+                <li><Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+                <li><Link to="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link></li>
+                <li><Link to="/affiliate-disclosure" className="hover:text-white transition-colors">Affiliate Disclosure</Link></li>
+                <li><Link to="/disclaimer" className="hover:text-white transition-colors">Disclaimer</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Contact</h4>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li>
+                  <a href="mailto:contato@edysouzafotografia.com" className="hover:text-white transition-colors">
+                    Email Us
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -228,6 +236,10 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/:slug" element={<ArticlePage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/affiliate-disclosure" element={<AffiliateDisclosure />} />
+        <Route path="/disclaimer" element={<Disclaimer />} />
       </Routes>
     </BrowserRouter>
   );

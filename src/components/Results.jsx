@@ -1,7 +1,9 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Check, ExternalLink, Mail, Star, AlertCircle } from 'lucide-react';
 import { getRecommendations, getMainSymptoms } from '../utils/recommendations';
 import { products } from '../data/products';
+import { fadeInUp, staggerContainer, scaleIn } from '../utils/animations';
 
 const Results = ({ answers, onEmailCapture, onRetakeQuiz }) => {
   const recommendations = getRecommendations(answers, products).slice(0, 4);
@@ -25,68 +27,139 @@ const Results = ({ answers, onEmailCapture, onRetakeQuiz }) => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50 py-12">
       <div className="max-w-6xl mx-auto px-4">
         {/* Results Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="text-center mb-12"
+        >
+          <motion.div 
+            variants={scaleIn}
+            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+            className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-4"
+          >
             <Check className="w-4 h-4" />
             Analysis Complete
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          </motion.div>
+          <motion.h1 
+            variants={fadeInUp}
+            className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+          >
             Your Personalized Recommendations
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          </motion.h1>
+          <motion.p 
+            variants={fadeInUp}
+            className="text-lg text-gray-600 max-w-2xl mx-auto"
+          >
             Based on your answers, we've identified the best solutions to help you 
             manage your symptoms and improve your wellness journey.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Main Symptoms Summary */}
         {mainSymptoms.length > 0 && (
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 mb-8"
+          >
+            <motion.h2 
+              variants={fadeInUp}
+              className="text-xl font-semibold text-gray-900 mb-4"
+            >
               Your Primary Concerns
-            </h2>
-            <div className="flex flex-wrap gap-3">
+            </motion.h2>
+            <motion.div 
+              variants={staggerContainer}
+              className="flex flex-wrap gap-3"
+            >
               {mainSymptoms.map((symptom, index) => (
-                <div 
+                <motion.div 
                   key={index}
+                  variants={scaleIn}
+                  whileHover={{ scale: 1.05 }}
                   className="flex items-center gap-2 bg-primary-50 text-primary-700 px-4 py-2 rounded-lg"
                 >
                   <AlertCircle className="w-4 h-4" />
                   <span className="font-medium">{symptom}</span>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )}
 
         {/* Email Capture CTA */}
-        <div className="bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl p-8 text-white text-center mb-12 shadow-lg">
-          <Mail className="w-12 h-12 mx-auto mb-4 opacity-90" />
-          <h3 className="text-2xl font-bold mb-2">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl p-8 text-white text-center mb-12 shadow-lg"
+        >
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+          >
+            <Mail className="w-12 h-12 mx-auto mb-4 opacity-90" />
+          </motion.div>
+          <motion.h3 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-2xl font-bold mb-2"
+          >
             Want these results in your inbox?
-          </h3>
-          <p className="mb-4 opacity-90 max-w-2xl mx-auto">
+          </motion.h3>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mb-4 opacity-90 max-w-2xl mx-auto"
+          >
             Get your personalized recommendations plus exclusive wellness tips, 
             menopause guides, and special offers delivered directly to your email.
-          </p>
-          <button
+          </motion.p>
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ delay: 0.5 }}
             onClick={onEmailCapture}
             className="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors shadow-md"
           >
             Send Me My Results
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
         {/* Product Recommendations */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={staggerContainer}
+          className="mb-8"
+        >
+          <motion.h2 
+            variants={fadeInUp}
+            className="text-2xl font-bold text-gray-900 mb-6"
+          >
             Recommended For You
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          </motion.h2>
+          <motion.div 
+            variants={staggerContainer}
+            className="grid md:grid-cols-2 gap-6"
+          >
             {recommendations.map((product, index) => (
-              <div 
-                key={product.id} 
-                className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1"
+              <motion.div 
+                key={product.id}
+                variants={fadeInUp}
+                whileHover={{ y: -8 }}
+                transition={{ duration: 0.3 }}
+                className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-xl relative"
               >
                 {/* Product Header */}
                 <div className="flex items-start justify-between mb-4">
@@ -132,17 +205,31 @@ const Results = ({ answers, onEmailCapture, onRetakeQuiz }) => {
                 </div>
 
                 {/* CTA Button */}
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={() => handleAffiliateClick(product)}
                   className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-3 rounded-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
                 >
                   Learn More & Get Started
                   <ExternalLink className="w-4 h-4" />
-                </button>
-              </div>
+                </motion.button>
+                
+                {/* Top Pick Badge para o primeiro produto */}
+                {index === 0 && (
+                  <motion.div
+                    initial={{ x: -100 }}
+                    animate={{ x: 0 }}
+                    transition={{ delay: 0.5, type: "spring", damping: 15 }}
+                    className="absolute top-4 left-0 bg-orange-500 text-white px-4 py-1 rounded-r-full font-semibold text-sm shadow-md"
+                  >
+                    ⭐ Top Pick
+                  </motion.div>
+                )}
+              </motion.div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Disclaimer */}
         <div className="bg-gray-50 rounded-lg p-6 border border-gray-200 mb-8">
@@ -156,7 +243,13 @@ const Results = ({ answers, onEmailCapture, onRetakeQuiz }) => {
         </div>
 
         {/* Bottom Actions */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white rounded-lg p-6 shadow-sm border border-gray-100">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white rounded-lg p-6 shadow-sm border border-gray-100"
+        >
           <div>
             <h3 className="font-semibold text-gray-900 mb-1">
               Want different recommendations?
@@ -165,13 +258,15 @@ const Results = ({ answers, onEmailCapture, onRetakeQuiz }) => {
               Retake the quiz to get updated suggestions
             </p>
           </div>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={onRetakeQuiz}
             className="px-6 py-3 border-2 border-primary-500 text-primary-600 rounded-lg font-semibold hover:bg-primary-50 transition-colors whitespace-nowrap"
           >
             Retake Quiz
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
         {/* Additional Resources Section */}
         <div className="mt-12 text-center">

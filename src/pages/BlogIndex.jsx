@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { motion } from 'framer-motion';
 import { Calendar, Clock, ArrowRight, Search, TrendingUp, Mail, Sparkles } from 'lucide-react';
 import Header from '../components/Header';
 import EmailModal from '../components/EmailModal';
 import { articles, getCategories } from '../data/articles';
+import { fadeInUp, staggerContainer } from '../utils/animations';
 
 const BlogIndex = () => {
   const [selectedCategory, setSelectedCategory] = useState('All Articles');
@@ -90,12 +92,25 @@ const BlogIndex = () => {
         <Header />
         
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-primary-600 via-purple-600 to-secondary-600 text-white py-20">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="bg-gradient-to-r from-primary-600 via-purple-600 to-secondary-600 text-white py-20"
+        >
           <div className="max-w-6xl mx-auto px-4">
-            <div className="text-center mb-8">
-              <div className="flex items-center justify-center gap-3 mb-4">
+            <motion.div 
+              initial="hidden"
+              animate="visible"
+              variants={staggerContainer}
+              className="text-center mb-8"
+            >
+              <motion.div 
+                variants={fadeInUp}
+                className="flex items-center justify-center gap-3 mb-4"
+              >
                 <Sparkles className="w-8 h-8 animate-pulse" />
-                <h1 className="text-5xl md:text-6xl font-extrabold animate-fadeIn">
+                <h1 className="text-5xl md:text-6xl font-extrabold">
                   Menopause Wellness Blog
                 </h1>
                 <Sparkles className="w-8 h-8 animate-pulse" />
@@ -230,23 +245,35 @@ const BlogIndex = () => {
           </div>
 
           {/* Articles Grid */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerContainer}
+            className="mb-16"
+          >
+            <motion.h2 
+              variants={fadeInUp}
+              className="text-3xl font-bold text-gray-900 mb-8"
+            >
               {selectedCategory === 'All Articles' ? 'All Articles' : selectedCategory}
-            </h2>
+            </motion.h2>
             
             {otherArticles.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <motion.div 
+                variants={staggerContainer}
+                className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+              >
                 {otherArticles.map((article) => (
                   <ArticleCard key={article.id} article={article} />
                 ))}
-              </div>
+              </motion.div>
             ) : (
               <div className="text-center py-12">
                 <p className="text-gray-500 text-lg">No articles found. Try a different category or search term.</p>
               </div>
             )}
-          </div>
+          </motion.div>
 
           {/* CTA Section */}
           <div className="bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl shadow-2xl p-8 md:p-12 text-white text-center">
@@ -327,18 +354,28 @@ const BlogIndex = () => {
 const ArticleCard = ({ article }) => {
   return (
     <Link to={`/blog/${article.slug}`} className="block group">
-      <article className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all transform hover:-translate-y-2 h-full flex flex-col">
+      <motion.article 
+        variants={fadeInUp}
+        whileHover={{ y: -8 }}
+        transition={{ duration: 0.3 }}
+        className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl h-full flex flex-col"
+      >
         {/* Image with Gradient Overlay */}
         <div className="relative h-48 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary-400/80 to-secondary-400/80" />
-          <img
+          <motion.img
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.4 }}
             src={article.image}
             alt={article.title}
             className="w-full h-full object-cover mix-blend-overlay"
           />
-          <span className="absolute top-4 left-4 px-3 py-1 bg-white rounded-full text-xs font-bold text-gray-700 shadow-md">
+          <motion.span 
+            whileHover={{ scale: 1.05 }}
+            className="absolute top-4 left-4 px-3 py-1 bg-white rounded-full text-xs font-bold text-gray-700 shadow-md"
+          >
             {article.category}
-          </span>
+          </motion.span>
         </div>
         
         {/* Content */}
@@ -362,12 +399,15 @@ const ArticleCard = ({ article }) => {
             </div>
           </div>
           
-          <div className="inline-flex items-center gap-2 text-primary-600 font-semibold group-hover:text-primary-700 transition-colors">
+          <motion.div 
+            whileHover={{ x: 5 }}
+            className="inline-flex items-center gap-2 text-primary-600 font-semibold group-hover:text-primary-700 transition-colors"
+          >
             Read More
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </div>
+            <ArrowRight className="w-4 h-4" />
+          </motion.div>
         </div>
-      </article>
+      </motion.article>
     </Link>
   );
 };

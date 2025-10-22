@@ -209,7 +209,7 @@ function QuizApp() {
               <h4 className="font-semibold mb-4">Contact</h4>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li>
-                  <a href="mailto:contact@getmenomatch.com" className="hover:text-white transition-colors">
+                  <a href="mailto:support@getmenomatch.com" className="hover:text-white transition-colors">
                     Email Us
                   </a>
                 </li>

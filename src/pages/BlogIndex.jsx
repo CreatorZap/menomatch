@@ -16,6 +16,14 @@ const BlogIndex = () => {
   // Get categories
   const categories = ['All Articles', ...getCategories()];
 
+  // Calculate article counts per category
+  const getCategoryCount = (category) => {
+    if (category === 'All Articles') {
+      return articles.length;
+    }
+    return articles.filter(article => article.category === category).length;
+  };
+
   // Filter articles
   const filteredArticles = articles.filter(article => {
     const matchesCategory = selectedCategory === 'All Articles' || article.category === selectedCategory;
@@ -144,13 +152,20 @@ const BlogIndex = () => {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-6 py-3 rounded-full font-semibold transition-all transform hover:scale-105 ${
+                  className={`px-6 py-3 rounded-full font-semibold transition-all transform hover:scale-105 flex items-center gap-2 ${
                     selectedCategory === category
                       ? 'bg-primary-600 text-white shadow-lg'
                       : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md'
                   }`}
                 >
-                  {category}
+                  <span>{category}</span>
+                  <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
+                    selectedCategory === category
+                      ? 'bg-white/20 text-white'
+                      : 'bg-gray-200 text-gray-600'
+                  }`}>
+                    {getCategoryCount(category)}
+                  </span>
                 </button>
               ))}
             </div>

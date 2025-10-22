@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Star, Quote } from 'lucide-react';
 import { testimonials } from '../data/testimonials';
 
 const Testimonials = () => {
+  const [imageErrors, setImageErrors] = useState({});
+
+  const handleImageError = (testimonialId) => {
+    setImageErrors(prev => ({ ...prev, [testimonialId]: true }));
+  };
+
   return (
     <div className="bg-gradient-to-br from-primary-50 to-secondary-50 py-20">
       <div className="max-w-6xl mx-auto px-4">
@@ -40,9 +46,20 @@ const Testimonials = () => {
 
               {/* Author Info */}
               <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                {/* Avatar with Initials */}
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white font-bold">
-                  {testimonial.initials}
+                {/* Avatar with Photo or Fallback to Initials */}
+                <div className="relative w-12 h-12 flex-shrink-0">
+                  {!imageErrors[testimonial.id] && testimonial.image ? (
+                    <img 
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-full h-full rounded-full object-cover border-2 border-primary-200 shadow-sm"
+                      onError={() => handleImageError(testimonial.id)}
+                    />
+                  ) : (
+                    <div className="w-full h-full rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white font-bold">
+                      {testimonial.initials}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">

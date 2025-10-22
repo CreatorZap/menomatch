@@ -114,7 +114,7 @@ const BlogIndex = () => {
                   Menopause Wellness Blog
                 </h1>
                 <Sparkles className="w-8 h-8 animate-pulse" />
-              </div>
+              </motion.div>
               <p className="text-xl md:text-2xl text-blue-50 max-w-3xl mx-auto mb-8 animate-slideUp">
                 Evidence-based guides to help you navigate menopause naturally
               </p>
@@ -132,9 +132,9 @@ const BlogIndex = () => {
                   />
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         <div className="max-w-7xl mx-auto px-4 py-12">
           {/* Category Filter */}

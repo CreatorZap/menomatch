@@ -42,6 +42,17 @@ const Header = ({ showProgress = false, currentQuestion = 0, totalQuestions = 10
     setMobileMenuOpen(false);
   };
 
+  // Check if link is active
+  const isActive = (path) => {
+    if (path === '/') {
+      return location.pathname === '/';
+    }
+    if (path === '/blog') {
+      return location.pathname === '/blog' || location.pathname.startsWith('/blog/');
+    }
+    return location.pathname === path;
+  };
+
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 py-4">
@@ -71,19 +82,31 @@ const Header = ({ showProgress = false, currentQuestion = 0, totalQuestions = 10
               <nav className="hidden md:flex items-center gap-6">
                 <Link 
                   to="/about" 
-                  className="text-gray-600 hover:text-primary-500 font-medium transition-colors"
+                  className={`font-medium transition-colors relative pb-1 ${
+                    isActive('/about')
+                      ? 'text-primary-600 font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary-600'
+                      : 'text-gray-600 hover:text-primary-500'
+                  }`}
                 >
                   About
                 </Link>
                 <Link 
                   to="/" 
-                  className="text-gray-600 hover:text-primary-500 font-medium transition-colors"
+                  className={`font-medium transition-colors relative pb-1 ${
+                    isActive('/')
+                      ? 'text-primary-600 font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary-600'
+                      : 'text-gray-600 hover:text-primary-500'
+                  }`}
                 >
                   Take Quiz
                 </Link>
                 <Link 
                   to="/blog" 
-                  className="text-gray-600 hover:text-primary-500 font-medium transition-colors"
+                  className={`font-medium transition-colors relative pb-1 ${
+                    isActive('/blog')
+                      ? 'text-primary-600 font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary-600'
+                      : 'text-gray-600 hover:text-primary-500'
+                  }`}
                 >
                   Blog
                 </Link>
@@ -127,21 +150,33 @@ const Header = ({ showProgress = false, currentQuestion = 0, totalQuestions = 10
               <div className="flex flex-col space-y-1">
                 <Link
                   to="/about"
-                  className="text-lg font-medium text-gray-900 hover:text-primary-600 hover:bg-primary-50 px-4 py-3 rounded-lg transition-colors"
+                  className={`text-lg font-medium px-4 py-3 rounded-lg transition-colors ${
+                    isActive('/about')
+                      ? 'text-primary-600 bg-primary-50 font-semibold'
+                      : 'text-gray-900 hover:text-primary-600 hover:bg-primary-50'
+                  }`}
                   onClick={closeMobileMenu}
                 >
                   About
                 </Link>
                 <Link
                   to="/"
-                  className="text-lg font-medium text-gray-900 hover:text-primary-600 hover:bg-primary-50 px-4 py-3 rounded-lg transition-colors"
+                  className={`text-lg font-medium px-4 py-3 rounded-lg transition-colors ${
+                    isActive('/')
+                      ? 'text-primary-600 bg-primary-50 font-semibold'
+                      : 'text-gray-900 hover:text-primary-600 hover:bg-primary-50'
+                  }`}
                   onClick={closeMobileMenu}
                 >
                   Take Quiz
                 </Link>
                 <Link
                   to="/blog"
-                  className="text-lg font-medium text-gray-900 hover:text-primary-600 hover:bg-primary-50 px-4 py-3 rounded-lg transition-colors"
+                  className={`text-lg font-medium px-4 py-3 rounded-lg transition-colors ${
+                    isActive('/blog')
+                      ? 'text-primary-600 bg-primary-50 font-semibold'
+                      : 'text-gray-900 hover:text-primary-600 hover:bg-primary-50'
+                  }`}
                   onClick={closeMobileMenu}
                 >
                   Blog

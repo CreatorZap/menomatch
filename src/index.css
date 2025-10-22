@@ -46,6 +46,26 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Melhor scroll no Safari */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Transitions suaves em todos os links e botões */
+a, button {
+  transition: all 0.2s ease;
+}
+
+/* Hover effects sutis em cards */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
 /* Custom animations */
 @keyframes fadeIn {
   from {
@@ -67,10 +87,49 @@ html {
   }
 }
 
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .animate-fadeIn {
   animation: fadeIn 0.2s ease-out;
 }
 
 .animate-slideUp {
   animation: slideUp 0.3s ease-out;
+}
+
+.animated-gradient {
+  background: linear-gradient(45deg, #3b82f6, #f97316, #ec4899);
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+/* Focus visible para acessibilidade */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Prefers reduced motion para acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
 }

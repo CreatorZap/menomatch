@@ -1,5 +1,7 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Sparkles, Brain, Zap, Moon, ArrowRight, CheckCircle } from 'lucide-react';
+import { fadeInUp, staggerContainer } from '../utils/animations';
 import Testimonials from './Testimonials';
 import FAQ from './FAQ';
 
@@ -8,38 +10,58 @@ const Landing = ({ onStartQuiz }) => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50">
       {/* Hero Section */}
       <div className="max-w-6xl mx-auto px-4 py-16 md:py-24">
-        <div className="text-center max-w-3xl mx-auto">
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="text-center max-w-3xl mx-auto"
+        >
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-medium mb-6 animate-pulse">
+          <motion.div 
+            variants={fadeInUp}
+            className="inline-flex items-center gap-2 bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-medium mb-6 animate-pulse"
+          >
             <Sparkles className="w-4 h-4" />
             Personalized Menopause Wellness
-          </div>
+          </motion.div>
           
           {/* Main Headline */}
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+          <motion.h1 
+            variants={fadeInUp}
+            className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight"
+          >
             Find Your Perfect
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500">
               {' '}Menopause Solution
             </span>
-          </h1>
+          </motion.h1>
           
           {/* Subheadline */}
-          <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+          <motion.p 
+            variants={fadeInUp}
+            className="text-xl text-gray-600 mb-8 leading-relaxed"
+          >
             Take our science-backed quiz and discover personalized supplement recommendations 
             tailored to your unique symptoms and wellness goals.
-          </p>
+          </motion.p>
 
           {/* CTA Button */}
-          <button 
+          <motion.button 
+            variants={fadeInUp}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={onStartQuiz}
-            className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all shadow-lg hover:shadow-xl flex items-center gap-2 mx-auto transform hover:scale-105"
+            className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all shadow-lg hover:shadow-xl flex items-center gap-2 mx-auto"
           >
             Start Your Free Quiz
             <ArrowRight className="w-5 h-5" />
-          </button>
+          </motion.button>
 
           {/* Trust Indicators */}
-          <div className="flex items-center justify-center gap-6 mt-6 text-sm text-gray-500">
+          <motion.div 
+            variants={fadeInUp}
+            className="flex items-center justify-center gap-6 mt-6 text-sm text-gray-500 flex-wrap"
+          >
             <div className="flex items-center gap-1">
               <CheckCircle className="w-4 h-4 text-green-500" />
               <span>Takes only 2 minutes</span>
@@ -52,16 +74,30 @@ const Landing = ({ onStartQuiz }) => {
               <CheckCircle className="w-4 h-4 text-green-500" />
               <span>Science-backed</span>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mt-20">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={staggerContainer}
+          className="grid md:grid-cols-3 gap-8 mt-20"
+        >
           {/* Feature 1 */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all hover:-translate-y-1">
-            <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+          <motion.div 
+            variants={fadeInUp}
+            whileHover={{ y: -8 }}
+            className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow"
+          >
+            <motion.div 
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.6 }}
+              className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4"
+            >
               <Brain className="w-6 h-6 text-primary-500" />
-            </div>
+            </motion.div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
               Personalized Analysis
             </h3>
@@ -69,13 +105,21 @@ const Landing = ({ onStartQuiz }) => {
               Our intelligent quiz analyzes your symptoms to recommend the best 
               solutions for your unique needs.
             </p>
-          </div>
+          </motion.div>
 
           {/* Feature 2 */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all hover:-translate-y-1">
-            <div className="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center mb-4">
+          <motion.div 
+            variants={fadeInUp}
+            whileHover={{ y: -8 }}
+            className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow"
+          >
+            <motion.div 
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.6 }}
+              className="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center mb-4"
+            >
               <Zap className="w-6 h-6 text-secondary-500" />
-            </div>
+            </motion.div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
               Natural Solutions
             </h3>
@@ -83,13 +127,21 @@ const Landing = ({ onStartQuiz }) => {
               Discover clinically-studied natural supplements that can help manage 
               your menopausal symptoms effectively.
             </p>
-          </div>
+          </motion.div>
 
           {/* Feature 3 */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all hover:-translate-y-1">
-            <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+          <motion.div 
+            variants={fadeInUp}
+            whileHover={{ y: -8 }}
+            className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow"
+          >
+            <motion.div 
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.6 }}
+              className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4"
+            >
               <Moon className="w-6 h-6 text-primary-500" />
-            </div>
+            </motion.div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
               Better Wellness
             </h3>
@@ -97,8 +149,8 @@ const Landing = ({ onStartQuiz }) => {
               Take control of your menopause journey with evidence-based 
               recommendations you can trust.
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Social Proof Section */}
         <div className="mt-20 text-center">

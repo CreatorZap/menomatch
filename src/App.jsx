@@ -5,6 +5,7 @@ import Landing from './components/Landing';
 import Quiz from './components/Quiz';
 import Results from './components/Results';
 import EmailModal from './components/EmailModal';
+import ScrollToTop from './components/ScrollToTop';
 import About from './pages/About';
 import BlogIndex from './pages/BlogIndex';
 import ArticlePage from './pages/ArticlePage';
@@ -241,6 +242,7 @@ function App() {
         <Route path="/affiliate-disclosure" element={<AffiliateDisclosure />} />
         <Route path="/disclaimer" element={<Disclaimer />} />
       </Routes>
+      <ScrollToTop />
     </BrowserRouter>
   );
 }

@@ -12,6 +12,7 @@ const BlogIndex = () => {
   const [selectedCategory, setSelectedCategory] = useState('All Articles');
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [visibleArticles, setVisibleArticles] = useState(6);
 
   // Get categories
   const categories = ['All Articles', ...getCategories()];
@@ -37,6 +38,16 @@ const BlogIndex = () => {
   // Get featured article (first one)
   const featuredArticle = filteredArticles.find(a => a.featured) || filteredArticles[0];
   const otherArticles = filteredArticles.filter(a => a.id !== featuredArticle?.id);
+
+  // Reset visible articles when filters change
+  React.useEffect(() => {
+    setVisibleArticles(6);
+  }, [selectedCategory, searchQuery]);
+
+  // Load more function
+  const loadMore = () => {
+    setVisibleArticles(prev => prev + 6);
+  };
 
   const handleEmailSubmit = async (email) => {
     try {
@@ -279,10 +290,31 @@ const BlogIndex = () => {
                 variants={staggerContainer}
                 className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
               >
-                {otherArticles.map((article) => (
+                {otherArticles.slice(0, visibleArticles).map((article) => (
                   <ArticleCard key={article.id} article={article} />
                 ))}
               </motion.div>
+
+              {/* Load More Button */}
+              {visibleArticles < otherArticles.length && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-center mt-12"
+                >
+                  <button
+                    onClick={loadMore}
+                    className="inline-flex items-center gap-3 bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl transition-all transform hover:scale-105"
+                  >
+                    Load More Articles
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                  <p className="text-sm text-gray-500 mt-4">
+                    Showing {Math.min(visibleArticles, otherArticles.length)} of {otherArticles.length} articles
+                  </p>
+                </motion.div>
+              )}
             </motion.div>
           )}
           

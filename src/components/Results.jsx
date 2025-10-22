@@ -90,51 +90,6 @@ const Results = ({ answers, onEmailCapture, onRetakeQuiz }) => {
           </motion.div>
         )}
 
-        {/* Email Capture CTA */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl p-8 text-white text-center mb-12 shadow-lg"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-          >
-            <Mail className="w-12 h-12 mx-auto mb-4 opacity-90" />
-          </motion.div>
-          <motion.h3 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-2xl font-bold mb-2"
-          >
-            Want these results in your inbox?
-          </motion.h3>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mb-4 opacity-90 max-w-2xl mx-auto"
-          >
-            Get your personalized recommendations plus exclusive wellness tips, 
-            menopause guides, and special offers delivered directly to your email.
-          </motion.p>
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ delay: 0.5 }}
-            onClick={onEmailCapture}
-            className="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors shadow-md"
-          >
-            Send Me My Results
-          </motion.button>
-        </motion.div>
-
         {/* Product Recommendations */}
         <motion.div 
           initial="hidden"
@@ -229,6 +184,50 @@ const Results = ({ answers, onEmailCapture, onRetakeQuiz }) => {
               </motion.div>
             ))}
           </motion.div>
+        </motion.div>
+
+        {/* Email Capture CTA */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl p-8 text-white text-center mb-12 shadow-lg"
+        >
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+          >
+            <Mail className="w-12 h-12 mx-auto mb-4 opacity-90" />
+          </motion.div>
+          <motion.h3 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-2xl font-bold mb-2"
+          >
+            Save these recommendations to your inbox!
+          </motion.h3>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mb-4 opacity-90 max-w-2xl mx-auto"
+          >
+            We'll also send you exclusive menopause tips and guides delivered directly to your email.
+          </motion.p>
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ delay: 0.5 }}
+            onClick={onEmailCapture}
+            className="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors shadow-md"
+          >
+            Send Me My Results
+          </motion.button>
         </motion.div>
 
         {/* Disclaimer */}

@@ -11,6 +11,7 @@ const Quiz = ({
 }) => {
   const question = questions[currentQuestion];
   const progress = ((currentQuestion + 1) / questions.length) * 100;
+  const isLastQuestion = currentQuestion === questions.length - 1;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-orange-50 pt-24 pb-12">
@@ -19,10 +20,22 @@ const Quiz = ({
         <div className="mb-8">
           <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
             <motion.div 
-              className="h-full bg-gradient-to-r from-primary-500 to-secondary-500"
+              className={`h-full bg-gradient-to-r from-primary-500 to-secondary-500 ${
+                isLastQuestion ? 'shadow-lg' : ''
+              }`}
               initial={{ width: 0 }}
-              animate={{ width: `${progress}%` }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              animate={{ 
+                width: `${progress}%`,
+                boxShadow: isLastQuestion 
+                  ? ['0 0 0px rgba(99, 102, 241, 0)', '0 0 20px rgba(99, 102, 241, 0.6)', '0 0 0px rgba(99, 102, 241, 0)']
+                  : '0 0 0px rgba(0, 0, 0, 0)'
+              }}
+              transition={{ 
+                width: { duration: 0.5, ease: "easeOut" },
+                boxShadow: isLastQuestion 
+                  ? { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                  : { duration: 0 }
+              }}
             />
           </div>
           <motion.div 
@@ -46,14 +59,29 @@ const Quiz = ({
             className="bg-white rounded-2xl shadow-lg p-8 md:p-12 border border-gray-100"
           >
             {/* Question Number Badge */}
-            <motion.div 
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.1 }}
-              className="inline-block bg-primary-100 text-primary-700 text-sm font-semibold px-3 py-1 rounded-full mb-4"
-            >
-              Question {currentQuestion + 1}
-            </motion.div>
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              <motion.div 
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.1 }}
+                className="inline-block bg-primary-100 text-primary-700 text-sm font-semibold px-3 py-1 rounded-full"
+              >
+                Question {currentQuestion + 1}
+              </motion.div>
+              
+              {/* Final Question Badge */}
+              {isLastQuestion && (
+                <motion.div 
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                  className="inline-flex items-center gap-1.5 bg-gradient-to-r from-green-100 to-emerald-100 text-green-700 text-sm font-semibold px-3 py-1 rounded-full"
+                >
+                  <span>🎉</span>
+                  <span>Final Question!</span>
+                </motion.div>
+              )}
+            </div>
 
             {/* Question Text */}
             <motion.h2 
@@ -155,9 +183,20 @@ const Quiz = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="text-sm text-gray-500"
+            className={`text-sm font-medium ${
+              isLastQuestion 
+                ? 'text-primary-600 flex items-center justify-center gap-2' 
+                : 'text-gray-500'
+            }`}
           >
-            Select an option to continue
+            {isLastQuestion ? (
+              <>
+                <span className="text-lg">🎯</span>
+                <span>Select to reveal your personalized recommendations</span>
+              </>
+            ) : (
+              'Select an option to continue'
+            )}
           </motion.p>
         </div>
       </div>

@@ -267,7 +267,7 @@ const TermsOfService = () => {
             <div className="bg-gradient-to-r from-primary-50 to-secondary-50 p-6 rounded-lg">
               <p className="text-gray-900 mb-2"><strong>MenoMatch Legal Team</strong></p>
               <p className="text-gray-700 mb-2">
-                <strong>Email:</strong> <a href="mailto:contato@edysouzafotografia.com" className="text-primary-600 hover:underline">contato@edysouzafotografia.com</a>
+                <strong>Email:</strong> <a href="mailto:support@getmenomatch.com" className="text-primary-600 hover:underline">support@getmenomatch.com</a>
               </p>
               <p className="text-gray-700">
                 <strong>Response Time:</strong> Within 2-3 business days

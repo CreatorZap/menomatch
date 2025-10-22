@@ -255,7 +255,7 @@ const AffiliateDisclosure = () => {
                 <strong>Get in Touch:</strong>
               </p>
               <p className="text-gray-700 mb-2">
-                📧 Email: <a href="mailto:contato@edysouzafotografia.com" className="text-primary-600 hover:underline font-medium">contato@edysouzafotografia.com</a>
+                📧 Email: <a href="mailto:hello@getmenomatch.com" className="text-primary-600 hover:underline font-medium">hello@getmenomatch.com</a>
               </p>
               <p className="text-gray-700 mb-3">
                 ⏱️ We respond within 48 hours

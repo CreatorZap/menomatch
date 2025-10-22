@@ -314,7 +314,7 @@ const Disclaimer = () => {
             <div className="bg-gradient-to-r from-primary-50 to-secondary-50 p-6 rounded-lg">
               <p className="text-gray-900 mb-2"><strong>MenoMatch Team</strong></p>
               <p className="text-gray-700 mb-2">
-                📧 Email: <a href="mailto:contato@edysouzafotografia.com" className="text-primary-600 hover:underline">contato@edysouzafotografia.com</a>
+                📧 Email: <a href="mailto:support@getmenomatch.com" className="text-primary-600 hover:underline">support@getmenomatch.com</a>
               </p>
               <p className="text-gray-700 text-sm">
                 We cannot provide medical advice via email, but we're happy to clarify our policies or content.

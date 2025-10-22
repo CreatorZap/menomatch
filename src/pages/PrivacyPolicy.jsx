@@ -57,7 +57,7 @@ const PrivacyPolicy = () => {
             <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
               <p className="text-blue-900 flex items-center gap-2">
                 <Mail className="w-5 h-5" />
-                <strong>Contact:</strong> <a href="mailto:contato@edysouzafotografia.com" className="hover:underline">contato@edysouzafotografia.com</a>
+                <strong>Contact:</strong> <a href="mailto:contact@getmenomatch.com" className="hover:underline">contact@getmenomatch.com</a>
               </p>
             </div>
           </section>
@@ -196,7 +196,7 @@ const PrivacyPolicy = () => {
             </ul>
             <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
               <p className="text-green-900">
-                <strong>To exercise your rights:</strong> Email us at <a href="mailto:contato@edysouzafotografia.com" className="hover:underline font-medium">contato@edysouzafotografia.com</a> with your request. We will respond within 30 days.
+                <strong>To exercise your rights:</strong> Email us at <a href="mailto:contact@getmenomatch.com" className="hover:underline font-medium">contact@getmenomatch.com</a> with your request. We will respond within 30 days.
               </p>
             </div>
           </section>
@@ -229,7 +229,7 @@ const PrivacyPolicy = () => {
               <span className="text-primary-600">9.</span> Children's Privacy
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              MenoMatch is not intended for individuals under the age of 18. We do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided us with personal information, please contact us at <a href="mailto:contato@edysouzafotografia.com" className="text-primary-600 hover:underline">contato@edysouzafotografia.com</a> so we can delete it.
+              MenoMatch is not intended for individuals under the age of 18. We do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided us with personal information, please contact us at <a href="mailto:contact@getmenomatch.com" className="text-primary-600 hover:underline">contact@getmenomatch.com</a> so we can delete it.
             </p>
           </section>
 
@@ -261,7 +261,7 @@ const PrivacyPolicy = () => {
               <p className="text-gray-900 mb-2"><strong>MenoMatch Privacy Team</strong></p>
               <p className="text-gray-700 mb-2 flex items-center gap-2">
                 <Mail className="w-5 h-5 text-primary-600" />
-                <strong>Email:</strong> <a href="mailto:contato@edysouzafotografia.com" className="text-primary-600 hover:underline">contato@edysouzafotografia.com</a>
+                <strong>Email:</strong> <a href="mailto:contact@getmenomatch.com" className="text-primary-600 hover:underline">contact@getmenomatch.com</a>
               </p>
               <p className="text-gray-700 flex items-center gap-2">
                 <Eye className="w-5 h-5 text-primary-600" />

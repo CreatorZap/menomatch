@@ -260,21 +260,21 @@ const BlogIndex = () => {
           </div>
 
           {/* Articles Grid */}
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={staggerContainer}
-            className="mb-16"
-          >
-            <motion.h2 
-              variants={fadeInUp}
-              className="text-3xl font-bold text-gray-900 mb-8"
+          {otherArticles.length > 0 && (
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              variants={staggerContainer}
+              className="mb-16"
             >
-              {selectedCategory === 'All Articles' ? 'All Articles' : selectedCategory}
-            </motion.h2>
-            
-            {otherArticles.length > 0 ? (
+              <motion.h2 
+                variants={fadeInUp}
+                className="text-3xl font-bold text-gray-900 mb-8"
+              >
+                {selectedCategory === 'All Articles' ? 'All Articles' : selectedCategory}
+              </motion.h2>
+              
               <motion.div 
                 variants={staggerContainer}
                 className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -283,12 +283,15 @@ const BlogIndex = () => {
                   <ArticleCard key={article.id} article={article} />
                 ))}
               </motion.div>
-            ) : (
-              <div className="text-center py-12">
-                <p className="text-gray-500 text-lg">No articles found. Try a different category or search term.</p>
-              </div>
-            )}
-          </motion.div>
+            </motion.div>
+          )}
+          
+          {/* No articles message - only show if NO articles at all (including featured) */}
+          {filteredArticles.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-gray-500 text-lg">No articles found. Try a different category or search term.</p>
+            </div>
+          )}
 
           {/* CTA Section */}
           <div className="bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl shadow-2xl p-8 md:p-12 text-white text-center">

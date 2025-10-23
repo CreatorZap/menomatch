@@ -14,6 +14,7 @@ import TermsOfService from './pages/TermsOfService';
 import AffiliateDisclosure from './pages/AffiliateDisclosure';
 import Disclaimer from './pages/Disclaimer';
 import { questions } from './data/questions';
+import { subscribeToKit, prepareQuizDataForKit, trackEmailCapture } from './services/kitService';
 
 // Quiz App Component (encapsulates quiz logic)
 function QuizApp() {
@@ -79,56 +80,47 @@ function QuizApp() {
     setShowEmailModal(true);
   };
 
-  // Handle email submit
+  // Handle email submit with Kit (ConvertKit) integration
   const handleEmailSubmit = async (email) => {
     try {
-      // ConvertKit Integration
-      const CONVERTKIT_API_KEY = process.env.REACT_APP_CONVERTKIT_API_KEY;
-      const CONVERTKIT_FORM_ID = process.env.REACT_APP_CONVERTKIT_FORM_ID;
+      console.log('📧 Processing email capture:', email);
 
-      // If ConvertKit is configured, use it
-      if (CONVERTKIT_API_KEY && CONVERTKIT_FORM_ID) {
-        const response = await fetch(`https://api.convertkit.com/v3/forms/${CONVERTKIT_FORM_ID}/subscribe`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            api_key: CONVERTKIT_API_KEY,
-            email: email,
-            fields: {
-              quiz_answers: JSON.stringify(answers),
-              quiz_date: new Date().toISOString()
-            },
-            tags: ['menomatch-quiz', 'website-lead']
-          })
-        });
+      // Prepare quiz data for Kit with all answers
+      const quizResults = {
+        email: email,
+        symptoms: Object.keys(answers).map(key => {
+          const question = questions.find(q => q.id === parseInt(key));
+          return question ? question.text : key;
+        }),
+        ageRange: answers[1] || 'Not specified', // Assuming question 1 is age
+      };
 
-        if (!response.ok) {
-          throw new Error('Failed to subscribe to ConvertKit');
-        }
+      const kitData = prepareQuizDataForKit(answers, quizResults);
 
-        console.log('✅ Email captured via ConvertKit:', email);
-      } else {
-        // Fallback: Log to console in development
-        console.log('📧 Email captured (development mode):', email);
-        console.log('📝 Quiz answers:', answers);
-        console.log('⚠️ ConvertKit not configured. Add REACT_APP_CONVERTKIT_API_KEY and REACT_APP_CONVERTKIT_FORM_ID to .env');
-      }
+      // Subscribe to Kit (ConvertKit) with new API
+      const result = await subscribeToKit(kitData);
 
-      // Track email capture in analytics
-      if (window.gtag) {
-        window.gtag('event', 'email_captured', {
-          source: 'results_page',
-          email_provider: CONVERTKIT_API_KEY ? 'convertkit' : 'none'
-        });
-      }
+      // Track in analytics regardless of Kit success
+      trackEmailCapture(result.success, 'quiz');
 
+      // Always close modal and show success to user
+      // (We don't want email service failures to block UX)
       setShowEmailModal(false);
+
+      if (result.success) {
+        console.log('✅ Successfully subscribed to Kit via new API!');
+      } else {
+        console.warn('⚠️ Kit subscription failed, but continuing UX flow:', result.error);
+      }
+
       return Promise.resolve();
     } catch (error) {
-      console.error('❌ Error submitting email:', error);
-      return Promise.reject(error);
+      console.error('❌ Error in email submission:', error);
+      
+      // Even with error, close modal and continue
+      // (Better UX than blocking user)
+      setShowEmailModal(false);
+      return Promise.resolve(); // Resolve instead of reject
     }
   };
 

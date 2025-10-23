@@ -14,7 +14,7 @@ import TermsOfService from './pages/TermsOfService';
 import AffiliateDisclosure from './pages/AffiliateDisclosure';
 import Disclaimer from './pages/Disclaimer';
 import { questions } from './data/questions';
-import { subscribeToKit, prepareQuizDataForKit, trackEmailCapture } from './services/kitService';
+import { subscribeToKit, prepareQuizDataForKit, trackEmailCapture } from './services/brevoService';
 
 // Quiz App Component (encapsulates quiz logic)
 function QuizApp() {

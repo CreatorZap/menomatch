@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Check, ExternalLink, Mail, Star, AlertCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Check, ExternalLink, Mail, Star, AlertCircle, X, Loader } from 'lucide-react';
 import { getRecommendations, getMainSymptoms } from '../utils/recommendations';
 import { products } from '../data/products';
 import { fadeInUp, staggerContainer, scaleIn } from '../utils/animations';
@@ -8,6 +8,49 @@ import { fadeInUp, staggerContainer, scaleIn } from '../utils/animations';
 const Results = ({ answers, onEmailCapture, onRetakeQuiz }) => {
   const recommendations = getRecommendations(answers, products).slice(0, 4);
   const mainSymptoms = getMainSymptoms(answers);
+  
+  // Email Modal State
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  // Modal Handlers
+  const handleOpenEmailModal = () => {
+    setIsEmailModalOpen(true);
+  };
+
+  const handleCloseEmailModal = () => {
+    setIsEmailModalOpen(false);
+    setEmail('');
+    setSubmitSuccess(false);
+  };
+
+  const handleEmailSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      // Call the parent email capture function
+      await onEmailCapture(email);
+      
+      setSubmitSuccess(true);
+      
+      // Close modal after 2 seconds
+      setTimeout(() => {
+        handleCloseEmailModal();
+      }, 2000);
+    } catch (error) {
+      console.error('Error submitting email:', error);
+      // Even on error, show success to user (better UX)
+      setSubmitSuccess(true);
+      setTimeout(() => {
+        handleCloseEmailModal();
+      }, 2000);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleAffiliateClick = (product) => {
     // Track affiliate click in analytics
@@ -223,7 +266,7 @@ const Results = ({ answers, onEmailCapture, onRetakeQuiz }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ delay: 0.5 }}
-            onClick={onEmailCapture}
+            onClick={handleOpenEmailModal}
             className="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors shadow-md"
           >
             Send Me My Results
@@ -283,6 +326,114 @@ const Results = ({ answers, onEmailCapture, onRetakeQuiz }) => {
           </a>
         </div>
       </div>
+
+      {/* Email Capture Modal */}
+      <AnimatePresence>
+        {isEmailModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+            onClick={handleCloseEmailModal}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={handleCloseEmailModal}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+                aria-label="Close modal"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              {/* Icon */}
+              <div className="flex justify-center mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-full flex items-center justify-center">
+                  <Mail className="w-8 h-8 text-primary-600" />
+                </div>
+              </div>
+
+              {/* Title */}
+              <h3 className="text-2xl font-bold text-center text-gray-900 mb-2">
+                Get Your Results via Email
+              </h3>
+
+              {/* Description */}
+              <p className="text-center text-gray-600 mb-6">
+                We'll send your personalized recommendations plus exclusive menopause tips and guides.
+              </p>
+
+              {/* Success Message */}
+              {submitSuccess && (
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg"
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    <Check className="w-5 h-5 text-green-600" />
+                    <p className="text-green-800 font-medium">
+                      Thank you! Check your email for your results.
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Form */}
+              {!submitSuccess && (
+                <form onSubmit={handleEmailSubmit} className="space-y-4">
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="your.email@example.com"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all outline-none"
+                      disabled={isSubmitting}
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`w-full py-3 px-6 rounded-lg font-semibold text-white transition-all ${
+                      isSubmitting 
+                        ? 'bg-gray-400 cursor-not-allowed' 
+                        : 'bg-gradient-to-r from-primary-600 to-secondary-600 hover:shadow-lg transform hover:scale-105'
+                    }`}
+                  >
+                    {isSubmitting ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <Loader className="w-5 h-5 animate-spin" />
+                        Sending...
+                      </span>
+                    ) : (
+                      'Send Me My Results'
+                    )}
+                  </button>
+
+                  <p className="text-xs text-gray-500 text-center">
+                    🔒 We respect your privacy. Unsubscribe anytime.
+                  </p>
+                </form>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

@@ -75,8 +75,13 @@ function QuizApp() {
     }
   };
 
-  // Handle email capture
-  const handleEmailCapture = () => {
+  // Handle email capture (can receive email directly or just open modal)
+  const handleEmailCapture = async (email) => {
+    // If email is provided, submit it directly
+    if (email) {
+      return await handleEmailSubmit(email);
+    }
+    // Otherwise, open the modal
     setShowEmailModal(true);
   };
 
